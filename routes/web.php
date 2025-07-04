@@ -13,8 +13,8 @@ Route::get('/user', function (Request $request) {
 Route::middleware(['web'])->group(function () {
     Route::post('/login', [RegisteredUserController::class, 'login']);
 });
-// Route::get('/sanctum/csrf-cookie', function (Request $request) {
-//     return response()->json(['csrf_token' => csrf_token()]);
-// });
+Route::get('/sanctum/csrf-cookie', function (Request $request) {
+     return response()->json(['csrf_token' => csrf_token()]);
+ });
 
 require __DIR__.'/auth.php';
