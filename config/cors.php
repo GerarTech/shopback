@@ -4,7 +4,7 @@ return [
 
      'paths' => ['api/*', 'login', 'sanctum/csrf-cookie'],
     
-    'allowed_origins' => ['*'], // **Change this to your frontend URL(s) for production!**
+    'allowed_origins' => ['https://shopfront-tau.vercel.app/'], // **Change this to your frontend URL(s) for production!**
     'allowed_methods' => ['*'],
     'allowed_headers' => ['*'],
     'exposed_headers' => [],
