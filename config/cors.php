@@ -7,7 +7,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' =>  ['http://localhost:3000', 'https://shopify-clone-orpin.vercel.app'],
+    'allowed_origins' =>  ['http://localhost:3000', 'https://shopfront-tau.vercel.app/'],
     
     'allowed_origins_patterns' => [],
 
