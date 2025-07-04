@@ -11,7 +11,7 @@ return [
     
     'allowed_origins_patterns' => [],
 
-    'allowed_headers' => ['*'],
+    'allowed_headers' => ['*','https://shopfront-tau.vercel.app/'],
 
     'exposed_headers' => [],
 
