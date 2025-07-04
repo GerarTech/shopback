@@ -18,7 +18,14 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->api(prepend: [
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
         ]);
-
+         // Add the Fruitcake CORS middleware here
+         $middleware->api(append: [
+            \Fruitcake\Cors\HandleCors::class,
+    ]);
+    // If your frontend also hits web routes that need CORS, add it here too:
+        $middleware->web(append: [
+            \Fruitcake\Cors\HandleCors::class,
+    ]);
         $middleware->alias([
             'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
         ]);
