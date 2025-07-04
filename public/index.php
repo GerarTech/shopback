@@ -1,5 +1,4 @@
-<?php header('Access-Control-Allow-Origin: *');
-
+<?php 
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 
