@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "build": "vite build",
-    "test": "echo \"Error: no test specified\" && exit 1"
-    
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -31,7 +29,6 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.10",
-    "typescript": "^5.8.3",
-    "vite": "^7.0.6"
+    "typescript": "^5.8.3"
   }
 }
