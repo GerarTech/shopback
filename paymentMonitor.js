@@ -4,7 +4,7 @@ const db = require('./models/db'); // We need the database connection here
 
 async function checkTRXPayments() {
   try {
-    const [pendingTxs] = await db.promise().query("SELECT * FROM recharge_transactions WHERE status = 'pending' AND currency = 'TRX'");
+    const [pendingTxs] = await db.query("SELECT * FROM recharge_transactions WHERE status = 'pending' AND currency = 'TRX'");
 
     if (pendingTxs.length === 0) {
       return;
@@ -23,28 +23,28 @@ async function checkTRXPayments() {
           // --- THIS IS THE CORRECTED TRANSACTION LOGIC ---
           try {
             // 1. Start the transaction on the main 'db' connection
-            await db.promise().beginTransaction();
+            await db.beginTransaction();
 
             // 2. Credit the user's main wallet balance
-            await db.promise().query(
+            await db.query(
               'UPDATE users SET wallet_balance = wallet_balance + ? WHERE id = ?',
               [tx.amount_expected, tx.user_id]
             );
 
             // 3. Mark the transaction as 'completed'
-            await db.promise().query(
+            await db.query(
               "UPDATE recharge_transactions SET status = 'completed' WHERE id = ?",
               [tx.id]
             );
 
             
             // 4. If both queries succeed, commit the transaction
-            await db.promise().commit();
+            await db.commit();
             console.log(`[Monitor] Successfully credited ${tx.amount_expected} TRX to user ${tx.user_id} and closed transaction ${tx.id}.`);
           
           } catch (updateError) {
             // 5. If any query fails, roll back the changes
-            await db.promise().rollback();
+            await db.rollback();
             console.error(`[Monitor] DB Transaction FAILED for user ${tx.user_id}. Changes were rolled back.`, updateError);
           }
         }

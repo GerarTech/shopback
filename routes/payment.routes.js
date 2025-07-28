@@ -40,7 +40,7 @@ router.post('/recharge', authenticateToken, async (req, res) => {
   try {
     const requiredTrxAmount = (numericUsdAmount / trxPriceInUsd).toFixed(6);
 
-    const [userRows] = await db.promise().query('SELECT walletAddress FROM users WHERE id = ?', [userId]);
+    const [userRows] = await db.query('SELECT walletAddress FROM users WHERE id = ?', [userId]);
     const user = userRows[0];
     if (!user || !user.walletAddress) {
       return res.status(404).json({ message: 'User wallet address not found. Please generate one first.' });
@@ -54,7 +54,7 @@ router.post('/recharge', authenticateToken, async (req, res) => {
     `;
 
     try {
-      await db.promise().query(insertSql, [userId, requiredTrxAmount, 'TRX', depositAddress, 'pending']);
+      await db.query(insertSql, [userId, requiredTrxAmount, 'TRX', depositAddress, 'pending']);
     } catch (dbErr) {
       console.error('[Recharge] DB insert failed:', dbErr);
       return res.status(500).json({ message: 'Server error while initiating recharge (DB failed).' });
