@@ -1,5 +1,5 @@
 // admin.model.js
-const db = require('./db');  // Ensure this path is correct to your database connection
+const db = require('./db'); // Ensure this path is correct to your database connection
 const bcrypt = require('bcryptjs'); // Assuming you use bcrypt for password hashing in controller
 
 const Admin = {
